@@ -24,9 +24,9 @@ public class AppTest {
 
     @Test
     public void datosCompletos() {
-        Mascota m1 = new Mascota("Mateo","Perro","Bernes de la montaña","Masculino","Negro,blanco,cafe",25,2);
+        Mascota m1 = new Mascota("Mateo","Perro","Bernes de la montaña","Masculino","Negro,blanco,cafe","1094957292",25,2);
         LOG.info("Iniciado test datosCompletos");
-        assertEquals("Mateo",m1.nombre());
+        assertEquals("Mateo",m1.getNombre());
         LOG.info("Finalizando test datosCompletos");
     }
 
@@ -34,14 +34,14 @@ public class AppTest {
     public void datosNulos() {
 
         LOG.info("Iniciado test nulos");
-        assertThrows(Throwable.class, ()-> new Mascota(null, null, null, null, null, 0, 0));
+        assertThrows(Throwable.class, ()-> new Mascota(null, null, null, null, null,null, 0, 0));
         LOG.info("Finalizando test datosNulos");
     }
 
     @Test
     public void datosVacios() {
         LOG.info("Iniciado test vacios");
-        assertThrows(Throwable.class, ()-> new Mascota(" ", " ", " ", " ", " ",0,0));
+        assertThrows(Throwable.class, ()-> new Mascota(" ", " ", " ", " ", " "," ",0,0));
         LOG.info("Finalizando test vacios");
 
     }
@@ -50,7 +50,7 @@ public class AppTest {
     public void edadNegativa() {
         LOG.info("Iniciado test edad Negativa");
 
-        assertThrows(Throwable.class, ()-> new Mascota("Mateo","Perro","Bernes de la montaña","Masculino","Negro,blanco,cafe",-25,2));
+        assertThrows(Throwable.class, ()-> new Mascota("Mateo","Perro","Bernes de la montaña","Masculino","Negro,blanco,cafe","1094957292",-25,2));
 
         LOG.info("Finalizando test edad no es negativa");
 
@@ -60,7 +60,7 @@ public class AppTest {
     public void pesoNegativo() {
         LOG.info("Iniciado test PesoNegativo");
 
-        assertThrows(Throwable.class, ()-> new Mascota("Mateo","Perro","Bernes de la montaña","Masculino","Negro,blanco,cafe",25,-2));
+        assertThrows(Throwable.class, ()-> new Mascota("Mateo","Perro","Bernes de la montaña","Masculino","Negro,blanco,cafe","1094957292",25,-2));
 
         LOG.info("Finalizando test PesoNegativo");
 
