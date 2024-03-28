@@ -22,11 +22,9 @@ public class Biblioteca {
     {
         for (Persona persona : personas) {
             if(persona.getId().equals(id)){
-                System.out.println(id +"2 true");
                 return true;
             }
         }
-        System.out.println(id +" 2 false");
         return false;
     }
 
@@ -67,6 +65,7 @@ public class Biblioteca {
     public void agregarRecurso(Recurso recurso)
     {
         assert validarNombreRecursoExistente(recurso.getNombre())==false;
+        recurso.setPrestado(false);
         recursosBiblioteca.add(recurso);
     }
 
@@ -94,6 +93,27 @@ public class Biblioteca {
         }
         return ejm.getPrestado();
     }
+
+    public boolean prestarRecursoAPersona(Recurso recurso,Persona persona)
+    {   
+        if (buscarRecurso(recurso)!=null && recurso.getPrestado()==false && buscarPersona(persona)!=null) {
+            persona.agregarRecursoAPersona(persona, recurso);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean devolerRecursoABiblioteca(Recurso recurso,Persona persona)
+    {   
+        if (buscarRecurso(recurso)!=null && recurso.getPrestado()==true && buscarPersona(persona)!=null) {
+            persona.devolerRecursoABiblioteca(persona, recurso);
+            return false;
+        }
+        return false;
+    }
+
+
     //**************************************** METODOS *******************************************************/
 
     public String getNombre() {

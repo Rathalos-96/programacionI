@@ -23,7 +23,18 @@ public class Persona {
     }
 
     //**************************************** METODOS *******************************************************/
-
+    public void agregarRecursoAPersona(Persona persona,Recurso recurso)
+    {   
+        recurso.setPrestado(true);
+        listaPrestamo.add(recurso);
+        persona.setListaPrestamo(listaPrestamo);
+    }
+    public void devolerRecursoABiblioteca(Persona persona,Recurso recurso)
+    {
+        recurso.setPrestado(false);
+        listaPrestamo.remove(recurso);
+        persona.setListaPrestamo(listaPrestamo);
+    }
 
     //**************************************** METODOS *******************************************************/
 

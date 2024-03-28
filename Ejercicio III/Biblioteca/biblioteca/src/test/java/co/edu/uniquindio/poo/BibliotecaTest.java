@@ -162,4 +162,52 @@ public class BibliotecaTest {
         assertTrue(b1.validarEstadoActualizar(r2));
         LOG.info("Finalizando test validarEstadoActualRecurso");
     }
+
+    @Test
+    public void prestarRecursoApersona()
+    {
+        LOG.info("Iniciado test prestarRecursoApersona");
+        Biblioteca b1 = new Biblioteca("Biblioteca U");
+        Recurso r1 = new Recurso("Teorema I", "0001", false,"libro");
+        Recurso r2 = new Recurso("Info Java", "0002", false,"revista");
+        Recurso r3 = new Recurso("Teorema II", "0003", false,"medio audio visual");
+        Persona p1 = new Persona("1094957292","Joan","jsvelasquez@uqvirtual.edu.co","3502790733");
+        Persona p2 = new Persona("1094957293","Joan","jsvelasquez@uqvirtual.edu.co","3502790733");
+        b1.agregarRecurso(r1);
+        b1.agregarRecurso(r2);
+        b1.agregarRecurso(r3);
+        b1.agregarPersona(p1);
+        b1.agregarPersona(p2);
+
+        b1.validarEstadoActualizar(r3);
+
+        b1.prestarRecursoAPersona(r3, p2);
+        b1.prestarRecursoAPersona(r3, p1);
+
+        assertEquals(1,p2.getListaPrestamo().size());
+        assertEquals(2,p1.getListaPrestamo().size());
+        LOG.info("Finalizando test validarEstadoActualRecurso");
+    }
+
+    @Test
+    public void devolerRecursoABiblioteca()
+    {
+        LOG.info("Iniciado test devolerRecursoABiblioteca");
+        Biblioteca b1 = new Biblioteca("Biblioteca U");
+        Recurso r1 = new Recurso("Teorema I", "0001", false,"libro");
+        Recurso r2 = new Recurso("Info Java", "0002", false,"revista");
+        Recurso r3 = new Recurso("Teorema II", "0003", false,"medio audio visual");
+        Persona p1 = new Persona("1094957292","Joan","jsvelasquez@uqvirtual.edu.co","3502790733");
+        b1.agregarRecurso(r1);
+        b1.agregarRecurso(r2);
+        b1.agregarRecurso(r3);
+        b1.agregarPersona(p1);
+        b1.prestarRecursoAPersona(r3, p1);
+        b1.prestarRecursoAPersona(r1, p1);
+        b1.prestarRecursoAPersona(r2, p1);
+
+        b1.devolerRecursoABiblioteca(r3, p1);
+        assertEquals(true,r3.getPrestado());
+        LOG.info("Finalizando test devolerRecursoABiblioteca");
+    }
 }
